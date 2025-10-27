@@ -1,0 +1,32 @@
+/* Ensure you have Tailwind CSS setup in your Next.js project.
+  This file will be imported by pages/_app.js.
+  Add these custom styles below the Tailwind @ directives.
+*/
+
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; 
+*/
+
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .fade-in-section {
+    animation: fadeIn 0.8s ease-out forwards;
+    opacity: 0; /* Start hidden */
+  }
+  
+  /* Apply staggered delay for children */
+  .stagger-fade > * {
+    animation: fadeIn 0.8s ease-out forwards;
+    animation-delay: var(--delay, 0s);
+    opacity: 0;
+  }
