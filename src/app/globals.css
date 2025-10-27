@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+:root {
+  --background: rgb(255, 255, 255);
+  --text-primary: rgb(17, 17, 17);
+  --accent-gold: rgb(180, 142, 85);
+  --border-gray: rgb(229, 229, 229);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-text-primary: var(--text-primary);
+  --color-accent-gold: var(--accent-gold);
+  --color-border-gray: var(--border-gray);
+  --font-headings: var(--font-playfair);
+  --font-body: var(--font-inter);
+}
+
+body {
+  background: var(--background);
+  color: var(--text-primary);
+  font-family: var(--font-inter), sans-serif;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-playfair), serif;
+}

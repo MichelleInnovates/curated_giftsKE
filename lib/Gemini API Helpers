@@ -1,0 +1,67 @@
+/**
+ * Implements exponential backoff for retrying API calls.
+ * @param {number} attempt - The current retry attempt number.
+ * @param {function} action - The async function to retry (e.g., the fetch call).
+ */
+async function exponentialBackoff(attempt, action) {
+  if (attempt > 5) { // Max 5 retries
+    throw new Error("API call failed after multiple retries.");
+  }
+  try {
+    return await action();
+  } catch (error) {
+    const delay = Math.pow(2, attempt) * 1000 + Math.random() * 1000;
+    // Do not log retry attempts to the console
+    await new Promise(resolve => setTimeout(resolve, delay));
+    return exponentialBackoff(attempt + 1, action);
+  }
+}
+
+/**
+ * Calls the Gemini API to get gift suggestions.
+ * @param {string} userInput - The user's description of the gift recipient.
+ * @returns {Promise<string>} - The AI-generated suggestion.
+ */
+export async function callGeminiApi(userInput) {
+  const systemPrompt = "You are a thoughtful and creative gift curator for 'Curated Gifts KE', a shop specializing in authentic, handcrafted treasures from Kenyan artisans. Your goal is to help users find the perfect gift from the collection. Be warm, descriptive, and connect the gift suggestion back to the artisan spirit.";
+  
+  const userQuery = `A user is looking for a gift. Here is their description: "${userInput}". 
+  Our current featured products are:
+  1. Handcrafted Ceramic Mug: Traditional glazed ceramic with modern elegance.
+  2. Kenyan Coffee Collection: Premium single-origin beans from artisan farms.
+  3. Woven Textile Runner: Hand-dyed patterns using ancestral techniques.
+  
+  Based on the user's description, suggest one or two of these products and explain *why* it would make a wonderful, story-rich gift. Keep your suggestion to a concise paragraph. If the description is too vague (e.g., "a gift"), gently ask for more details about the person's interests.`;
+
+  const apiKey = ""; // Leave as-is, Canvas will provide it
+  const apiUrl = `https://generativelightlanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+
+  const payload = {
+    contents: [{ parts: [{ text: userQuery }] }],
+    systemInstruction: {
+      parts: [{ text: systemPrompt }]
+    },
+  };
+
+  const action = async () => {
+    const response = await fetch(apiUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return response.json();
+  };
+
+  const result = await exponentialBackoff(1, action);
+  
+  const candidate = result.candidates?.[0];
+  if (candidate && candidate.content?.parts?.[0]?.text) {
+    return candidate.content.parts[0].text;
+  } else {
+    throw new Error("Unexpected API response format.");
+  }
+}
