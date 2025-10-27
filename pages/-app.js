@@ -66,7 +66,7 @@ const GlobalStlyes = () => (
     }
     *, *:before, *:after {
       box-sizing: inherit;
-     }
+     git}
    }</style>
 );
 
