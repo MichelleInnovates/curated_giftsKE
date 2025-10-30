@@ -25,7 +25,7 @@ export default function FeaturedCollection() {
         <h2 className="text-3xl md:text-4xl font-bold text-center text-black mb-12">
           Curated Collection
         </h2>
-        <div className="grid md:grid-cols-3 gap-8 stagger-fade">
+        <div className="grid lg:grid-cols-3 gap-8 stagger-fade">
           {products.map((product, index) => (
             <div
               key={product.title}
