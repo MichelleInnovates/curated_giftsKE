@@ -9,19 +9,14 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "rgb(255, 255, 255)",
+        background: "rgb(248, 245, 240)", // Changed to a warmer off-white
         "text-primary": "rgb(17, 17, 17)",
-        "accent-gold": "rgb(180, 142, 85)",
+        "accent-green": "rgb(56, 128, 135)", // New accent color from video
         "border-gray": "rgb(229, 229, 229)",
       },
       fontFamily: {
         headings: ["var(--font-playfair)", "serif"],
         body: ["var(--font-inter)", "sans-serif"],
-      },
-      spacing: {
-        '18': '4.5rem',
-        '88': '22rem',
-        '128': '32rem',
       },
     },
   },

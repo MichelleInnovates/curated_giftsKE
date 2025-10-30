@@ -2,11 +2,11 @@ import React from 'react';
 
 export default function Footer() {
   return (
-    <footer className="bg-black text-gray-300 py-16 fade-in-section">
-      <div className="container mx-auto px-6 grid md:grid-cols-4 lg:grid-cols-5 gap-12">
+    <footer className="bg-text-primary text-gray-300 py-16">
+      <div className="container mx-auto px-6 grid gap-12 md:grid-cols-4 lg:grid-cols-5">
         {/* Logo & Copyright */}
         <div className="md:col-span-1 lg:col-span-2">
-          <h4 className="text-xl font-bold text-white mb-4">Curated Gifts KE</h4>
+          <h4 className="text-xl font-headings font-bold text-white mb-4">Curated Gifts KE</h4>
           <p className="text-sm text-gray-400">
             Celebrating Kenyan craftsmanship.
           </p>
@@ -18,7 +18,7 @@ export default function Footer() {
         {/* Shop Links */}
         <div>
           <h5 className="font-semibold text-white mb-4 uppercase tracking-wider">Shop</h5>
-          <ul className="space-y-3">
+          <ul className="space-y-3 text-sm">
             <li><a href="#" className="hover:text-white transition-colors">Ceramics</a></li>
             <li><a href="#" className="hover:text-white transition-colors">Textiles</a></li>
             <li><a href="#" className="hover:text-white transition-colors">Coffee</a></li>
@@ -29,7 +29,7 @@ export default function Footer() {
         {/* About Links */}
         <div>
           <h5 className="font-semibold text-white mb-4 uppercase tracking-wider">About</h5>
-          <ul className="space-y-3">
+          <ul className="space-y-3 text-sm">
             <li><a href="#" className="hover:text-white transition-colors">Our Story</a></li>
             <li><a href="#" className="hover:text-white transition-colors">The Artisans</a></li>
             <li><a href="#" className="hover:text-white transition-colors">Sustainability</a></li>
@@ -40,7 +40,7 @@ export default function Footer() {
         {/* Connect Links */}
         <div>
           <h5 className="font-semibold text-white mb-4 uppercase tracking-wider">Connect</h5>
-          <ul className="space-y-3">
+          <ul className="space-y-3 text-sm">
             <li><a href="#" className="hover:text-white transition-colors">Instagram</a></li>
             <li><a href="#" className="hover:text-white transition-colors">Facebook</a></li>
             <li><a href="#" className="hover:text-white transition-colors">Newsletter</a></li>
