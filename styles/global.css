@@ -1,12 +1,6 @@
-/* Ensure you have Tailwind CSS setup in your Next.js project.
-  This file will be imported by pages/_app.js.
-  Add these custom styles below the Tailwind @ directives.
-*/
-
-/* @tailwind base;
+@tailwind base;
 @tailwind components;
-@tailwind utilities; 
-*/
+@tailwind utilities;
 
 @keyframes fadeIn {
     from {
